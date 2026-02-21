@@ -1,0 +1,34 @@
+#!/bin/bash
+
+mkcd() {
+  mkdir -p $@ && cd ${@:$#}
+}
+
+source_git() {
+  [[ -f ~/.git-completion ]] && source ~/.git-completion || :
+  [[ -f ~/.git-prompt ]] && source ~/.git-prompt || :
+}
+
+ssh-add_wf ()
+{
+    while read -r line; do
+        for file in ~/.ssh/*.pub;
+        do
+            printf "%s %s\n" "$(ssh-keygen -lf "$file" | awk '{$1=""}1')" "$file";
+        done | column -t | grep --color=auto "$line" || echo "$line";
+    done < <(ssh-add -l | awk '{print $2}')
+}
+
+tsa(){
+	tmux ls -F \#S > /dev/null 2>&1
+	if [ $? -eq 0 ]
+	then
+		SESSION=$(tmux ls -F \#S | gum filter --placeholder "Attach to a TMUX session...")
+
+		if [ ! -z "$SESSION" ]; then
+			tmux attach -t "$SESSION"
+		fi
+	else
+		echo "There is no existing TMUX session."
+	fi
+}

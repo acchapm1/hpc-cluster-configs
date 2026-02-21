@@ -1,0 +1,48 @@
+# Opencode AI configuration (local only)
+.opencode/
+
+# Vim temporary files
+*.swp
+*.swo
+*~
+.vim/.netrwhist
+.vim/.tmp/
+.vim/backup/
+.vim/.undo/
+.vim/.state/
+
+# Vim plugin directories (managed by vim-plug)
+.vim/plugged/
+
+# Tmux plugin directories (managed by TPM)
+.tmux/plugins/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Log files
+*.log
+
+# Node modules (if any)
+node_modules/
+
+# Temporary directories
+tmp/
+temp/
+.tmp/
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-*
+
+# Compiled files
+*.pyc
+__pycache__/

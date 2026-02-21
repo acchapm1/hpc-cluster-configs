@@ -1,0 +1,8 @@
+## Aliases
+alias sui='sudo -i'
+alias ll="ls -l"
+alias lt="ls -lrt"
+alias la="ls -la"
+alias ..="cd .."
+alias ...="cd ../../"
+alias ....="cd ../../../"

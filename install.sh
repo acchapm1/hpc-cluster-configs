@@ -8,7 +8,7 @@
 set -euo pipefail
 
 # Configuration
-readonly DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/acchapm1/dotfiles.git}"
+readonly DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/acchapm1/hpc-cluster-configs.git}"
 readonly INSTALL_DIR="${HOME}/.dotfiles"
 
 # Generate backup directory with timestamp

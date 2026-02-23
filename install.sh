@@ -159,23 +159,6 @@ install_tmux_plugins() {
   fi
 }
 
-# Clone lci-scripts repository
-clone_lci_scripts() {
-  local lci_dir="${HOME}/lci-scripts"
-  local lci_repo="https://github.com/ncsa/lci-scripts.git"
-
-  if [[ -d "${lci_dir}/.git" ]]; then
-    log_info "Updating lci-scripts repository"
-    cd "${lci_dir}"
-    git pull --quiet || log_warn "Could not update lci-scripts (non-fatal)"
-  else
-    log_info "Cloning lci-scripts repository"
-    rm -rf "${lci_dir}"
-    git clone --quiet "${lci_repo}" "${lci_dir}" || \
-      log_warn "Could not clone lci-scripts (non-fatal)"
-  fi
-}
-
 # Install glow binary to ~/.local/bin
 install_glow() {
   local glow_source="${INSTALL_DIR}/glow"
@@ -250,9 +233,6 @@ main() {
   # Install glow binary
   install_glow
 
-  # Clone lci-scripts repository
-  clone_lci_scripts
-
   # Summary
   log_info "Installation complete!"
   log_info "Backups saved to: ${BACKUP_DIR}"
@@ -260,7 +240,6 @@ main() {
   log_info "Installed:"
   log_info "  - Dotfiles in home directory"
   log_info "  - glow binary in ~/.local/bin/"
-  log_info "  - lci-scripts in ~/lci-scripts"
   log_info ""
   log_info "Next steps:"
   log_info "  1. Run 'source ~/.bashrc' to reload your shell"

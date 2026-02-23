@@ -46,9 +46,6 @@ Copies these configuration files to your home directory:
 - Creates `~/.local/bin/` directory if needed
 - Warns if the directory is not in your PATH
 
-### 7. Clones lci-scripts
-- Downloads https://github.com/ncsa/lci-scripts.git to `~/lci-scripts/`
-
 ## After Installation
 
 1. **Reload your shell:**

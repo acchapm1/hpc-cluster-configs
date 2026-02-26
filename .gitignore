@@ -1,7 +1,3 @@
-# Opencode AI configuration (local only)
-.opencode/
-AGENTS.md
-
 # Vim temporary files
 *.swp
 *.swo

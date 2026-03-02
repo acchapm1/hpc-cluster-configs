@@ -43,3 +43,5 @@ temp/
 # Compiled files
 *.pyc
 __pycache__/
+
+ocses

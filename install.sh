@@ -159,38 +159,61 @@ install_tmux_plugins() {
   fi
 }
 
+# Ensure ~/.local/bin exists and check PATH
+ensure_local_bin() {
+  local local_bin="${HOME}/.local/bin"
+  if [[ ! -d "${local_bin}" ]]; then
+    log_info "Creating ${local_bin}"
+    mkdir -p "${local_bin}"
+  fi
+
+  # Warn if ~/.local/bin is not in PATH
+  if [[ ":${PATH}:" != *":${local_bin}:"* ]]; then
+    log_warn "${local_bin} is not in your PATH"
+    log_warn "Add 'export PATH=\"\${HOME}/.local/bin:\${PATH}\"' to your ~/.bashrc"
+    return 1
+  fi
+  return 0
+}
+
+# Install binary to ~/.local/bin
+install_binary() {
+  local name="$1"
+  local source="${INSTALL_DIR}/${name}"
+  local target_dir="${HOME}/.local/bin"
+  local target="${target_dir}/${name}"
+
+  if [[ -f "${source}" ]]; then
+    ensure_local_bin
+
+    # Backup existing binary if present
+    if [[ -f "${target}" ]]; then
+      log_info "Backing up existing ${name} binary"
+      cp "${target}" "${BACKUP_DIR}/"
+    fi
+
+    # Copy binary
+    cp "${source}" "${target}"
+    chmod +x "${target}"
+    log_info "Installed ${name} to ${target}"
+  else
+    log_warn "${name} binary not found in repository (non-fatal)"
+  fi
+}
+
 # Install glow binary to ~/.local/bin
 install_glow() {
-  local glow_source="${INSTALL_DIR}/glow"
-  local glow_target_dir="${HOME}/.local/bin"
-  local glow_target="${glow_target_dir}/glow"
+  install_binary "glow"
+}
 
-  if [[ -f "${glow_source}" ]]; then
-    # Create ~/.local/bin if it doesn't exist
-    if [[ ! -d "${glow_target_dir}" ]]; then
-      log_info "Creating ${glow_target_dir}"
-      mkdir -p "${glow_target_dir}"
-    fi
+# Install just binary to ~/.local/bin
+install_just() {
+  install_binary "just"
+}
 
-    # Backup existing glow if present
-    if [[ -f "${glow_target}" ]]; then
-      log_info "Backing up existing glow binary"
-      cp "${glow_target}" "${BACKUP_DIR}/"
-    fi
-
-    # Copy glow binary
-    cp "${glow_source}" "${glow_target}"
-    chmod +x "${glow_target}"
-    log_info "Installed glow to ${glow_target}"
-
-    # Warn if ~/.local/bin is not in PATH
-    if [[ ":${PATH}:" != *":${glow_target_dir}:"* ]]; then
-      log_warn "${glow_target_dir} is not in your PATH"
-      log_warn "Add 'export PATH=\"\${HOME}/.local/bin:\${PATH}\"' to your ~/.bashrc"
-    fi
-  else
-    log_warn "glow binary not found in repository (non-fatal)"
-  fi
+# Install loadkeys.sh to ~/.local/bin
+install_loadkeys() {
+  install_binary "loadkeys.sh"
 }
 
 # Main installation function
@@ -230,8 +253,10 @@ main() {
   install_vim_plugins
   install_tmux_plugins
 
-  # Install glow binary
+  # Install binaries
   install_glow
+  install_just
+  install_loadkeys
 
   # Summary
   log_info "Installation complete!"
@@ -240,6 +265,8 @@ main() {
   log_info "Installed:"
   log_info "  - Dotfiles in home directory"
   log_info "  - glow binary in ~/.local/bin/"
+  log_info "  - just binary in ~/.local/bin/"
+  log_info "  - loadkeys.sh in ~/.local/bin/"
   log_info ""
   log_info "Next steps:"
   log_info "  1. Run 'source ~/.bashrc' to reload your shell"

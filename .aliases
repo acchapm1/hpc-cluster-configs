@@ -6,3 +6,5 @@ alias la="ls -la"
 alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
+
+alias loadkeys="bash ~/.local/bin/loadkeys.sh"

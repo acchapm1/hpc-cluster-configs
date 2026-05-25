@@ -1,0 +1,18 @@
+# Readline configuration — applies to bash, psql, python REPL, etc.
+
+# Inherit any system-wide defaults first
+$include /etc/inputrc
+
+# Completion behavior
+set completion-ignore-case on
+set completion-map-case on
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set colored-stats on
+set colored-completion-prefix on
+set mark-symlinked-directories on
+set visible-stats on
+
+# History search: type a prefix, then up/down walks matching commands
+"\e[A": history-search-backward
+"\e[B": history-search-forward

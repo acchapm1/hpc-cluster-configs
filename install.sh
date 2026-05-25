@@ -21,6 +21,7 @@ readonly DOTFILES=(
   ".bash_profile"
   ".aliases"
   ".functions"
+  ".inputrc"
   ".vimrc"
   ".tmux.conf"
   ".git-completion.bash"

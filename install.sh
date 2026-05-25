@@ -28,9 +28,10 @@ readonly DOTFILES=(
 )
 
 # List of dot directories to install
+# (.tmux/ is not tracked — TPM clones plugins into $HOME/.tmux/plugins/
+# at install time via install_tmux_plugins)
 readonly DOTDIRS=(
   ".vim"
-  ".tmux"
 )
 
 # Colors for output

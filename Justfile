@@ -12,7 +12,7 @@ BACKUP_DIR := env("BACKUP_DIR", "~/.dotfiles_backup/" + `date +%Y%m%d_%H%M%S`)
 
 # List of dotfiles to install
 DOTFILES_LIST := ".bashrc .bash_profile .aliases .functions .vimrc .tmux.conf .git-completion.bash .git-prompt.sh"
-DOTDIRS_LIST := ".vim .tmux"
+DOTDIRS_LIST := ".vim"
 
 # Full installation - equivalent to running install.sh
 install: backup-dotfiles install-dotfiles install-dirs vim-plugins tmux-plugins binaries

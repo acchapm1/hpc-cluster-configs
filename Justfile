@@ -11,8 +11,8 @@ INSTALL_DIR := env("INSTALL_DIR", "~/.dotfiles")
 BACKUP_DIR := env("BACKUP_DIR", "~/.dotfiles_backup/" + `date +%Y%m%d_%H%M%S`)
 
 # List of dotfiles to install
-dotfiles := ".bashrc .bash_profile .aliases .functions .vimrc .tmux.conf .git-completion.bash .git-prompt.sh"
-dotdirs := ".vim .tmux"
+DOTFILES_LIST := ".bashrc .bash_profile .aliases .functions .vimrc .tmux.conf .git-completion.bash .git-prompt.sh"
+DOTDIRS_LIST := ".vim .tmux"
 
 # Full installation - equivalent to running install.sh
 install: backup-dotfiles install-dotfiles install-dirs vim-plugins tmux-plugins binaries
@@ -41,7 +41,7 @@ backup-dotfiles:
     #!/usr/bin/env bash
     mkdir -p "{{BACKUP_DIR}}"
     echo "[INFO] Created backup directory: {{BACKUP_DIR}}"
-    for item in {{dotfiles}} {{dotdirs}}; do
+    for item in {{DOTFILES_LIST}} {{DOTDIRS_LIST}}; do
         target="$HOME/$item"
         if [[ -e "$target" ]] || [[ -L "$target" ]]; then
             echo "[INFO] Backing up $item"
@@ -57,7 +57,7 @@ backup-dotfiles:
 install-dotfiles:
     #!/usr/bin/env bash
     echo "[INFO] Installing dotfiles..."
-    for file in {{dotfiles}}; do
+    for file in {{DOTFILES_LIST}}; do
         source="{{INSTALL_DIR}}/$file"
         target="$HOME/$file"
         if [[ -f "$source" ]]; then
@@ -72,7 +72,7 @@ install-dotfiles:
 install-dirs:
     #!/usr/bin/env bash
     echo "[INFO] Installing dot directories..."
-    for dir in {{dotdirs}}; do
+    for dir in {{DOTDIRS_LIST}}; do
         source="{{INSTALL_DIR}}/$dir"
         target="$HOME/$dir"
         if [[ -d "$source" ]]; then
@@ -194,8 +194,8 @@ config:
     @echo "  INSTALL_DIR:   {{INSTALL_DIR}}"
     @echo "  BACKUP_DIR:    {{BACKUP_DIR}}"
     @echo ""
-    @echo "Dotfiles: {{dotfiles}}"
-    @echo "Dotdirs:  {{dotdirs}}"
+    @echo "Dotfiles: {{DOTFILES_LIST}}"
+    @echo "Dotdirs:  {{DOTDIRS_LIST}}"
 
 # ====================
 # Git Management Recipes
@@ -247,7 +247,7 @@ sync-from-home:
     #!/usr/bin/env bash
     echo "[INFO] Syncing dotfiles from home directory to repo..."
     repo_dir="$(cd "$(dirname "$0")" && pwd)"
-    for file in {{dotfiles}}; do
+    for file in {{DOTFILES_LIST}}; do
         home_file="$HOME/$file"
         repo_file="$repo_dir/$file"
         if [[ -f "$home_file" ]]; then
@@ -257,7 +257,7 @@ sync-from-home:
             echo "[WARN] $file not found in home directory"
         fi
     done
-    for dir in {{dotdirs}}; do
+    for dir in {{DOTDIRS_LIST}}; do
         home_dir="$HOME/$dir"
         repo_dir_path="$repo_dir/$dir"
         if [[ -d "$home_dir" ]]; then

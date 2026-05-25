@@ -24,6 +24,9 @@ desktop.ini
 *.backup
 *~
 
+# Internal working docs (not for distribution)
+TOFIX.md
+
 # Log files
 *.log
 

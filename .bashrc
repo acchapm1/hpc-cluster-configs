@@ -33,7 +33,6 @@ export VISUAL='vim'
 export PROMPT_DIRTRIM=1
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export TERM=xterm-256color
 export COLORTERM=truecolor
 
 HISTTIMEFORMAT="%F|%T "

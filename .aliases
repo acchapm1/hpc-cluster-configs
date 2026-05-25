@@ -7,4 +7,4 @@ alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
-alias loadkeys="bash ~/.local/bin/loadkeys.sh"
+alias ssh-loadkeys='loadkeys.sh'

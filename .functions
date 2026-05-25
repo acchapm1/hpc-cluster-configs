@@ -4,11 +4,6 @@ mkcd() {
   mkdir -p $@ && cd ${@:$#}
 }
 
-source_git() {
-  [[ -f ~/.git-completion ]] && source ~/.git-completion || :
-  [[ -f ~/.git-prompt ]] && source ~/.git-prompt || :
-}
-
 ssh-add_wf ()
 {
     while read -r line; do

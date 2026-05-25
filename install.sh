@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Dotfiles Installer for HPC Environments
-# Supports Rocky Linux 9.7 and similar RHEL-based systems
+# Tested on Rocky Linux 8.10 and 9.7; should work on RHEL-family distros
 # Can be run remotely: curl -fsSL https://raw.githubusercontent.com/USER/REPO/main/install.sh | bash
 #
 

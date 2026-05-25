@@ -4,7 +4,7 @@ This guide explains how to use the `install.sh` script to set up your HPC enviro
 
 ## Quick Start
 
-Run this command on any Rocky Linux 9.7 (or similar) HPC node:
+Run this command on an HPC node. Tested on Rocky Linux 8.10 and 9.7; should work on any RHEL-family distro:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/acchapm1/hpc-cluster-configs/main/install.sh | bash

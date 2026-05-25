@@ -4,7 +4,7 @@ This file guides AI coding agents working on this HPC dotfiles repository.
 
 ## Project Overview
 
-This is a **shell/dotfiles configuration repository** for HPC environments (Rocky Linux 9.7/RHEL-based). It manages shell environments, Vim, and Tmux configurations.
+This is a **shell/dotfiles configuration repository** for HPC environments (tested on Rocky Linux 8.10 and 9.7; RHEL-family). It manages shell environments, Vim, and Tmux configurations.
 
 - **Primary Language:** Bash/shell scripting
 - **Platform:** HPC clusters
@@ -130,7 +130,7 @@ curl -fsSL https://raw.githubusercontent.com/acchapm1/hpc-cluster-configs/main/i
 - Support both interactive and piped (`curl | bash`) execution
 - Backup existing configs before overwriting
 - Use `~/.local/bin` for user-installed binaries
-- Test with ` Rocky Linux 9.7` or similar RHEL-based systems
+- Test with Rocky Linux 8.10 or 9.7 (the two primary cluster OSes); should work on other RHEL-family distros
 
 ## Testing
 

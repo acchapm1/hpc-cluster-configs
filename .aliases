@@ -8,3 +8,9 @@ alias ...="cd ../../"
 alias ....="cd ../../../"
 
 alias ssh-loadkeys='loadkeys.sh'
+
+# Slurm
+alias sq='squeue --me'
+alias si='sinfo'
+alias sj='scontrol show job'
+alias myjobs='squeue --me --format="%.10i %.20j %.8T %.10M %.6D %R"'

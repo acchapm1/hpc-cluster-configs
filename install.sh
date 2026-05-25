@@ -24,7 +24,6 @@ readonly DOTFILES=(
   ".vimrc"
   ".tmux.conf"
   ".git-completion.bash"
-  ".git-prompt.sh"
 )
 
 # List of dot directories to install
